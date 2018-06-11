@@ -1,0 +1,36 @@
+{
+  "name": "jku-react-reservation",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "babel-preset-stage-2": "^6.24.1",
+    "moment": "^2.22.2",
+    "react": "^16.4.0",
+    "react-bootstrap": "^0.32.1",
+    "react-datetime": "^2.14.0",
+    "react-dom": "^16.4.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.4",
+    "react-table": "^6.8.6",
+    "redux": "^4.0.0",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-promise-middleware": "^5.1.1",
+    "redux-thunk": "^2.3.0"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --open --mode development",
+    "watch": "webpack -d --watch",
+    "build": "webpack",
+    "serve": "serve ./public"
+  },
+  "devDependencies": {
+    "babel-loader": "^7.1.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "serve": "^7.2.0",
+    "webpack": "^4.10.2",
+    "webpack-cli": "^3.0.2",
+    "webpack-dev-server": "^3.1.4"
+  }
+}
