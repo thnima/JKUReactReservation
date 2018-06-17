@@ -6,7 +6,7 @@ import { fetchRemoteEvents } from '../api/event-api';
 
 class EventsIndexPage extends Component {
 	componentDidMount() {
-		fetchRemoteEvents()
+		fetchRemoteEvents(this.props.auth.getAccessToken())
             .then(response => {
                 if (response.status === 200) {
                     return response.json();

@@ -5,8 +5,17 @@ import { setUser } from '../actions';
 
 class LoginPage extends Component {
     render(){
+		const isLoggedIn = this.props.auth.isAuthenticated();
+		let view;
+
+		if (isLoggedIn) {
+			view = (<Redirect to="/" />)
+		} else {
+			view = (<Login setUser={this.props.setUser} />)
+		}
+
         return (
-        	<Login setUser={this.props.setUser} />
+        	{view}
         );
     }
 }

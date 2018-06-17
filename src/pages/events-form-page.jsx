@@ -16,7 +16,7 @@ class EventsFormPage extends Component {
     }
 
     loadEvent(eventId) {
-      fetchRemoteEvent(eventId)
+      fetchRemoteEvent(eventId, this.props.auth.getAccessToken())
         .then(response => {
             if (response.status === 200) {
                 return response.json();

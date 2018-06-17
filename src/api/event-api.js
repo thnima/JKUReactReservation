@@ -1,23 +1,37 @@
-const fetchRemoteEvents = () => {
-	return fetch("http://localhost:3001/api/events");
-}
-const fetchRemoteEvent = eventId => {
-	return fetch(`http://localhost:3001/api/events/${eventId}`);
+const getHeader = token => {
+	return new Headers({
+		authorization: `Bearer ${token}`
+	});
 }
 
-const deleteRemoteEvent = eventId => {
-	const request = new Request(`http://localhost:3001/api/events/${eventId}`, {
+const fetchRemoteEvents = accessToken => {
+	return fetch("https://jku-expressjs-reservation.appspot.com/api/events", {
+		headers: getHeader(accessToken),
+   		method: 'GET'
+	});
+}
+const fetchRemoteEvent = (eventId, accessToken) => {
+	return fetch(`https://jku-expressjs-reservation.appspot.com/api/events/${eventId}`, {
+		headers: getHeader(accessToken),
+		method: 'GET'
+	});
+}
+
+const deleteRemoteEvent = (eventId, accessToken) => {
+	const request = new Request(`https://jku-expressjs-reservation.appspot.com/api/events/${eventId}`, {
+		headers: getHeader(accessToken),
 		method: 'DELETE'
 	});
 
 	return fetch(request);
 }
 
-const updateRemoteEvent = event => {
-	const request = new Request(`http://localhost:3001/api/events/${event.id}`, {
+const updateRemoteEvent = (event, accessToken) => {
+	const request = new Request(`https://jku-expressjs-reservation.appspot.com/api/events/${event.id}`, {
 		method: 'PUT',
 		headers: new Headers({
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
+			authorization: `Bearer ${accessToken}`
 		}),
 		body: JSON.stringify({ ...event })
 	});
@@ -25,13 +39,14 @@ const updateRemoteEvent = event => {
 	return fetch(request);
 }
 
-const createRemoteEvent = event => {
+const createRemoteEvent = (event, accessToken) => {
   	event.id = undefined;
 
-	const request = new Request("http://localhost:3001/api/events", {
+	const request = new Request("https://jku-expressjs-reservation.appspot.com/api/events", {
 		method: 'POST',
 		headers: new Headers({
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
+			authorization: `Bearer ${accessToken}`
 		}),
 		body: JSON.stringify({ ...event })
 	});

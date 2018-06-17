@@ -49,7 +49,7 @@ class EventForm extends Component {
   	}
 
   	updateEvent(event) {
-  		return updateRemoteEvent(event)
+  		return updateRemoteEvent(event, this.props.auth.getAccessToken())
             .then(response => {
                 if (response.status === 200) {
                     return response.json();
@@ -71,7 +71,7 @@ class EventForm extends Component {
   	}
 
   	createEvent(event) {
-  		return createRemoteEvent(event)
+  		return createRemoteEvent(event, this.props.auth.getAccessToken())
             .then(response => {
                 if (response.status === 200) {
                     return response.json();

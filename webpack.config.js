@@ -21,6 +21,10 @@ var config = {
         use: [ 'style-loader', 'css-loader' ]
       }
     ],
+  },
+  devServer: {
+    historyApiFallback: true,
+    contentBase: BUILD_DIR
   }
 };
 

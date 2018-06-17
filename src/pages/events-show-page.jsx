@@ -17,7 +17,7 @@ class EventsFormPage extends Component {
     }
 
     loadEvent(eventId) {
-      fetchRemoteEvent(eventId)
+      fetchRemoteEvent(eventId, this.props.auth.getAccessToken())
         .then(response => {
             if (response.status === 200) {
                 return response.json();
@@ -34,7 +34,7 @@ class EventsFormPage extends Component {
     }
 
     loadReservations({eventId, userId}) {
-      fetchRemoteReservations({eventId, userId})
+      fetchRemoteReservations({eventId, userId}, this.props.auth.getAccessToken())
         .then(response => {
             if (response.status === 200) {
                 return response.json();
@@ -52,24 +52,27 @@ class EventsFormPage extends Component {
 
     render(){
         let adminView;
+        let view;
 
         if (this.props.user.isAdmin) {
           adminView = (
             <ParticipantsCard reservations={this.props.reservations} deleteReservation={this.props.deleteReservation} />
           );
         }
-        return (
+
+        return (     
           <div>
-        	  <EventCard 
+            <EventCard 
               event={this.props.event} 
               user={this.props.user} 
               reservations={this.props.reservations} 
               deleteEvent={this.props.deleteEvent} 
               deleteReservation={this.props.deleteReservation} 
               makeReservation={this.props.makeReservation} 
+              auth={this.props.auth}
             />
             {adminView}
-          </div>
+          </div>       
         );
     }
 }

@@ -21,7 +21,7 @@ class ParticipantsCard extends Component {
     }
 
     deleteReservation(reservationId) {
-        deleteRemoteReservation(reservationId)
+        deleteRemoteReservation(reservationId, this.props.auth.getAccessToken())
             .then(response => {
                 if (response.status === 200) {
                     this.props.deleteReservation(reservationId);

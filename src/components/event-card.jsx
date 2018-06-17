@@ -10,7 +10,7 @@ class EventForm extends Component {
     };
 
     deleteEvent(eventId) {
-        deleteRemoteEvent(eventId)
+        deleteRemoteEvent(eventId, deleteRemoteEvent)
             .then(response => {
                 if (response.status === 200) {
                     this.props.deleteEvent(eventId);
@@ -28,7 +28,7 @@ class EventForm extends Component {
         const reservations = this.props.reservations;
 
         reservations.forEach(reservation => {
-            deleteRemoteReservation(reservation.id)
+            deleteRemoteReservation(reservation.id, this.props.auth.getAccessToken())
                 .then(response => {
                     if (response.status === 200) {
                         this.props.deleteReservation(reservation.id);
@@ -46,7 +46,7 @@ class EventForm extends Component {
             plusOne
         }
 
-        makeRemoteReservation(reservation)
+        makeRemoteReservation(reservation, this.props.auth.getAccessToken())
             .then(response => {
                 if (response.status === 200) {
                     this.props.makeReservation(reservation);
